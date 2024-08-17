@@ -1,0 +1,99 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\tene\\OneDrive - ERNI Group\\Desktop\\Projects\\MAUI\\NeilvynApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B2236AFA-DB28-422E-BDBE-E3CB1C56FDE3}|NeilvynApp\\NeilvynApp.csproj|c:\\users\\tene\\onedrive - erni group\\desktop\\projects\\maui\\neilvynapp\\neilvynapp\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2236AFA-DB28-422E-BDBE-E3CB1C56FDE3}|NeilvynApp\\NeilvynApp.csproj|solutionrelative:neilvynapp\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2236AFA-DB28-422E-BDBE-E3CB1C56FDE3}|NeilvynApp\\NeilvynApp.csproj|c:\\users\\tene\\onedrive - erni group\\desktop\\projects\\maui\\neilvynapp\\neilvynapp\\platforms\\android\\bootreceiver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2236AFA-DB28-422E-BDBE-E3CB1C56FDE3}|NeilvynApp\\NeilvynApp.csproj|solutionrelative:neilvynapp\\platforms\\android\\bootreceiver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2236AFA-DB28-422E-BDBE-E3CB1C56FDE3}|NeilvynApp\\NeilvynApp.csproj|c:\\users\\tene\\onedrive - erni group\\desktop\\projects\\maui\\neilvynapp\\neilvynapp\\platforms\\android\\myjobservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2236AFA-DB28-422E-BDBE-E3CB1C56FDE3}|NeilvynApp\\NeilvynApp.csproj|solutionrelative:neilvynapp\\platforms\\android\\myjobservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2236AFA-DB28-422E-BDBE-E3CB1C56FDE3}|NeilvynApp\\NeilvynApp.csproj|c:\\users\\tene\\onedrive - erni group\\desktop\\projects\\maui\\neilvynapp\\neilvynapp\\platforms\\android\\navigationreceiver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2236AFA-DB28-422E-BDBE-E3CB1C56FDE3}|NeilvynApp\\NeilvynApp.csproj|solutionrelative:neilvynapp\\platforms\\android\\navigationreceiver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 397,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NavigationReceiver.cs",
+              "DocumentMoniker": "C:\\Users\\tene\\OneDrive - ERNI Group\\Desktop\\Projects\\MAUI\\NeilvynApp\\NeilvynApp\\Platforms\\Android\\NavigationReceiver.cs",
+              "RelativeDocumentMoniker": "NeilvynApp\\Platforms\\Android\\NavigationReceiver.cs",
+              "ToolTip": "C:\\Users\\tene\\OneDrive - ERNI Group\\Desktop\\Projects\\MAUI\\NeilvynApp\\NeilvynApp\\Platforms\\Android\\NavigationReceiver.cs",
+              "RelativeToolTip": "NeilvynApp\\Platforms\\Android\\NavigationReceiver.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-31T03:26:43.941Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MyJobService.cs",
+              "DocumentMoniker": "C:\\Users\\tene\\OneDrive - ERNI Group\\Desktop\\Projects\\MAUI\\NeilvynApp\\NeilvynApp\\Platforms\\Android\\MyJobService.cs",
+              "RelativeDocumentMoniker": "NeilvynApp\\Platforms\\Android\\MyJobService.cs",
+              "ToolTip": "C:\\Users\\tene\\OneDrive - ERNI Group\\Desktop\\Projects\\MAUI\\NeilvynApp\\NeilvynApp\\Platforms\\Android\\MyJobService.cs",
+              "RelativeToolTip": "NeilvynApp\\Platforms\\Android\\MyJobService.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAiwBAAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-31T03:17:45.071Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BootReceiver.cs",
+              "DocumentMoniker": "C:\\Users\\tene\\OneDrive - ERNI Group\\Desktop\\Projects\\MAUI\\NeilvynApp\\NeilvynApp\\Platforms\\Android\\BootReceiver.cs",
+              "RelativeDocumentMoniker": "NeilvynApp\\Platforms\\Android\\BootReceiver.cs",
+              "ToolTip": "C:\\Users\\tene\\OneDrive - ERNI Group\\Desktop\\Projects\\MAUI\\NeilvynApp\\NeilvynApp\\Platforms\\Android\\BootReceiver.cs",
+              "RelativeToolTip": "NeilvynApp\\Platforms\\Android\\BootReceiver.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAowAwAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-31T03:13:25.935Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\tene\\OneDrive - ERNI Group\\Desktop\\Projects\\MAUI\\NeilvynApp\\NeilvynApp\\MainPage.xaml.cs",
+              "RelativeDocumentMoniker": "NeilvynApp\\MainPage.xaml.cs",
+              "ToolTip": "C:\\Users\\tene\\OneDrive - ERNI Group\\Desktop\\Projects\\MAUI\\NeilvynApp\\NeilvynApp\\MainPage.xaml.cs",
+              "RelativeToolTip": "NeilvynApp\\MainPage.xaml.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAowCYAAABJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-31T01:22:20.627Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedHeight": 357,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

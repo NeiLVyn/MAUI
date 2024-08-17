@@ -56,12 +56,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Views\Chatbox\**" />
+	  <Compile Remove="Views\Chatbox\**" />
+	  <EmbeddedResource Remove="Views\Chatbox\**" />
+	  <MauiCss Remove="Views\Chatbox\**" />
+	  <MauiXaml Remove="Views\Chatbox\**" />
+	  <None Remove="Views\Chatbox\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\AppIcon\appicon.png" />
-	  <None Remove="Resources\Images\about.png" />
-	  <None Remove="Resources\Images\bloodline.png" />
-	  <None Remove="Resources\Images\chat.png" />
-	  <None Remove="Resources\Images\map.png" />
-	  <None Remove="Resources\Images\tide.png" />
 	  <None Remove="Resources\Splash\splash.png" />
 	</ItemGroup>
 
@@ -73,15 +77,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Views\Map\" />
-	  <Folder Include="Views\Bloodline\" />
-	  <Folder Include="Views\About\" />
-	  <Folder Include="Views\Chatbox\" />
-	  <Folder Include="Views\TideAndWeather\" />
+	  <MauiIcon Include="Resources\AppIcon\appicon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiIcon Include="Resources\AppIcon\appicon.png" />
+	  <MauiXaml Update="Views\About\AboutView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Bloodline\BloodlineView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Chat\ChatView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Map\MapView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TideAndWeather\TideAndWeatherView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>

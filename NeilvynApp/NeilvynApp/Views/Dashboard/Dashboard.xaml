@@ -2,21 +2,54 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NeilvynApp.Views.Dashboard.Dashboard"
+             xmlns:viewBloodline="clr-namespace:NeilvynApp.Views.Bloodline"
+             xmlns:viewWeather="clr-namespace:NeilvynApp.Views.TideAndWeather"
+             xmlns:viewMap="clr-namespace:NeilvynApp.Views.Map"
+             xmlns:viewChat="clr-namespace:NeilvynApp.Views.Chat"
+             xmlns:viewAbout="clr-namespace:NeilvynApp.Views.About"
              BackgroundColor="#d1d1d1">
     <StackLayout>
-        <Label Text="Hello, World!"
-           FontSize="22"
-           HorizontalOptions="CenterAndExpand"
-           VerticalOptions="CenterAndExpand"
-           HorizontalTextAlignment="Center"
-           VerticalTextAlignment="Center" />
+        <ContentView x:Name="containerView"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand" >
+            <Grid HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-        <ContentView BackgroundColor="#1d1d1d"
+                <viewBloodline:BloodlineView x:Name="viewBloodline"
+                                             Grid.Row="0"
+                                             Grid.Column="0" />
+                <viewWeather:TideAndWeatherView x:Name="viewWeather"
+                                                Grid.Row="0"
+                                                Grid.Column="0" />
+                <viewMap:MapView x:Name="viewMap"
+                                 Grid.Row="0"
+                                 Grid.Column="0" />
+
+                <viewChat:ChatView x:Name="viewChat"
+                                   Grid.Row="0"
+                                   Grid.Column="0" />
+
+                <viewAbout:AboutView x:Name="viewAbout"
+                                     Grid.Row="0"
+                                     Grid.Column="0" />
+
+            </Grid>
+        </ContentView>
+
+        <ContentView x:Name="tabView"
+                     BackgroundColor="#1d1d1d"
                      HeightRequest="60"
                      VerticalOptions="End"
                      HorizontalOptions="FillAndExpand">
             <Grid HorizontalOptions="FillAndExpand"
                   VerticalOptions="FillAndExpand"
+                  Padding="0"
                   ColumnSpacing="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -26,48 +59,108 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Image Source="bloodline"
-                       WidthRequest="50"
-                       HeightRequest="50"
-                       Grid.Column="0"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center" />
-
-                <Image Source="weather"
-                       WidthRequest="50"
-                       HeightRequest="50"
-                       Grid.Column="1"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center" />
-
-                <Image Source="map"
-                       WidthRequest="50"
-                       HeightRequest="50"
-                       Grid.Column="2"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center" />
-
-                <Image Source="chat"
-                       WidthRequest="50"
-                       HeightRequest="50"
-                       Grid.Column="3"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center" />
-
-                <Image Source="about"
-                       WidthRequest="50"
-                       HeightRequest="50"
-                       Grid.Column="4"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center" />
-
                 <Image Source="indicator"
-                       Margin="-70 0 0 0"
-                       WidthRequest="70"
-                       HeightRequest="70"
+                       x:Name="indicator"
                        Grid.Column="2"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center" />
+                       VerticalOptions="StartAndExpand"
+                       HorizontalOptions="FillAndExpand" />
+
+                <ContentView Grid.Column="0"
+                             VerticalOptions="FillAndExpand"
+                             HorizontalOptions="FillAndExpand">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapped_TabMenu_Bloodline" />
+                    </ContentView.GestureRecognizers>
+                    <StackLayout>
+                        <Image Source="bloodline_light"
+                               x:Name="imgBloodline"
+                               WidthRequest="40"
+                               HeightRequest="40"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center" />
+                        <Label Text=""
+                               x:Name="lblBloodline"
+                               HorizontalOptions="Center" />
+                    </StackLayout>
+                </ContentView>
+
+                <ContentView Grid.Column="1"
+                             VerticalOptions="FillAndExpand"
+                             HorizontalOptions="FillAndExpand">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapped_TabMenu_Weather" />
+                    </ContentView.GestureRecognizers>
+                    <StackLayout>
+                        <Image Source="weather_light"
+                               x:Name="imgWeather"
+                               WidthRequest="40"
+                               HeightRequest="40"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center" />
+                        <Label Text=""
+                               x:Name="lblWeather"
+                               HorizontalOptions="Center" />
+                    </StackLayout>
+                </ContentView>
+
+                <ContentView Grid.Column="2"
+                             VerticalOptions="FillAndExpand"
+                             HorizontalOptions="FillAndExpand">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapped_TabMenu_Map" />
+                    </ContentView.GestureRecognizers>
+                    <StackLayout>
+                        <Image Source="map_light"
+                               x:Name="imgMap"
+                               WidthRequest="40"
+                               HeightRequest="40"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center" />
+                        <Label Text=""
+                               x:Name="lblMap"
+                               HorizontalOptions="Center" />
+                    </StackLayout>
+                </ContentView>
+
+                <ContentView Grid.Column="3"
+                             VerticalOptions="FillAndExpand"
+                             HorizontalOptions="FillAndExpand">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapped_TabMenu_Chat" />
+                    </ContentView.GestureRecognizers>
+                    <StackLayout>
+                        <Image Source="chat_light"
+                               x:Name="imgChat"
+                               WidthRequest="40"
+                               HeightRequest="40"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center" />
+                        <Label Text=""
+                               x:Name="lblChat"
+                               HorizontalOptions="Center" />
+                    </StackLayout>
+                </ContentView>
+
+                <ContentView Grid.Column="4"
+                             VerticalOptions="FillAndExpand"
+                             HorizontalOptions="FillAndExpand">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapped_TabMenu_About" />
+                    </ContentView.GestureRecognizers>
+                    <StackLayout>
+                        <Image Source="about_light"
+                               x:Name="imgAbout"
+                               WidthRequest="40"
+                               HeightRequest="40"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center" />
+                        <Label Text=""
+                               x:Name="lblAbout"
+                               HorizontalOptions="Center" />
+                    </StackLayout>
+                </ContentView>
+
+                
 
             </Grid>
         </ContentView>

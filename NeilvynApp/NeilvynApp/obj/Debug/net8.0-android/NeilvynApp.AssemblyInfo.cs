@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NeilvynApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+a27543f3ac4f091d78ab134c2d9070dbd7002c5f")]
 [assembly: System.Reflection.AssemblyProductAttribute("NeilvynApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NeilvynApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

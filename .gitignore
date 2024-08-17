@@ -1,0 +1,78 @@
+# Build results
+bin/
+obj/
+
+# User-specific files
+.vscode/
+.vscode/**
+*.userprefs
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+Generated/
+Generated/**
+
+# Configuration files
+appsettings.*.json
+
+# Visual Studio folders
+.vs/
+.vs/**
+
+# Mac specific files
+.DS_Store
+
+# Windows specific files
+Thumbs.db
+ehthumbs.db
+
+# JetBrains Rider IDE
+.idea/
+
+# Resharper
+_ReSharper.Caches/
+
+# Rider
+.idea/
+.idea/**
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# NuGet Packages
+packages/
+.nuget/
+*.nupkg
+
+# Log files
+*.log
+
+# Xamarin/iOS/Android
+.vscode/settings.json
+App_Resources/Android/google-services.json
+App_Resources/iOS/GoogleService-Info.plist
+
+# Shell history
+.history
+
+# User specific files
+*.csproj.user
+*.suo
+*.user
+*.rsuser
+*.userprefs
+
+# File-based project extension for VS 2017 and later
+*.vc.db
+*.vc.opendb
+
+# Rider projects
+.idea/
+
+# Localization and settings
+*.DotSettings.user

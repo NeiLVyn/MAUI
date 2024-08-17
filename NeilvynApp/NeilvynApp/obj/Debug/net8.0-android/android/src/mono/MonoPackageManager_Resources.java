@@ -26,7 +26,6 @@ public class MonoPackageManager_Resources {
 		"Microsoft.Maui.Graphics.dll",
 		"MySql.Data.dll",
 		"System.Configuration.ConfigurationManager.dll",
-		"System.Diagnostics.DiagnosticSource.dll",
 		"System.Diagnostics.EventLog.dll",
 		"System.IO.Pipelines.dll",
 		"System.Security.Cryptography.ProtectedData.dll",

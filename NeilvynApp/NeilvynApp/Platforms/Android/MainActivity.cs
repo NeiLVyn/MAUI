@@ -2,6 +2,7 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using Android.Views;
 
 namespace NeilvynApp
 {
@@ -26,6 +27,21 @@ namespace NeilvynApp
                 var screenToNavigate = Intent.GetStringExtra("navigateTo");
 
                 NavigateToScreen(screenToNavigate);
+            }
+
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop) // lollipop
+            {
+                Window.SetNavigationBarColor(Android.Graphics.Color.ParseColor("#1d1d1d"));
+
+            }
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.M) // marshmallow
+            {
+                Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#d1d1d1"));
+                Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
+            }
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.O) // oreo
+            {
+                //Window.DecorView.SystemUiVisibility |= (StatusBarVisibility)SystemUiFlags.LightNavigationBar;
             }
         }
 

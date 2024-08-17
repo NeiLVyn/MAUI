@@ -63,4 +63,18 @@
 		<PackageReference Include="MySql.Data" Version="9.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Views\Map\" />
+	  <Folder Include="Views\Bloodline\" />
+	  <Folder Include="Views\About\" />
+	  <Folder Include="Views\Chatbox\" />
+	  <Folder Include="Views\TideAndWeather\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Views\Dashboard\Dashboard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </None>
+	</ItemGroup>
+
 </Project>

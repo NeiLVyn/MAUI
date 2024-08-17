@@ -3,13 +3,13 @@
     x:Class="NeilvynApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:NeilvynApp"
+    xmlns:viewDashboard="clr-namespace:NeilvynApp.Views.Dashboard"
     Shell.FlyoutBehavior="Disabled"
     NavigationPage.HasNavigationBar="False"
     Title="NeilvynApp">
 
     <ShellContent
-        ContentTemplate="{DataTemplate local:MainPage}"
+        ContentTemplate="{DataTemplate viewDashboard:Dashboard}"
         NavigationPage.HasNavigationBar="False"
         Route="MainPage" />
 

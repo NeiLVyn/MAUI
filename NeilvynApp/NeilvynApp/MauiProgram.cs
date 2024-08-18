@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui.Maps;
+using Microsoft.Extensions.Logging;
+using CommunityToolkit.Maui;
+using NeilvynApp.Core;
 
 namespace NeilvynApp
 {
@@ -18,6 +21,8 @@ namespace NeilvynApp
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+
+            builder.UseMauiCommunityToolkitMaps(Constants.GoogleMap_Key);
 
             return builder.Build();
         }

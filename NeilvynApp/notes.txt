@@ -88,3 +88,154 @@ namespace NeilvynApp
         }
     }
 }
+
+-----------------------------OPEN WEATHER----------------------
+public static string OpenWeather_Key = "cc5db9cf47e272b14285b52bf0e71505"; 
+    // "1df5c5479bfd6f976ddaedc1ee4043ce"; 
+
+https://api.openweathermap.org/data/2.5/weather?lat=10.2138203&lon=123.5427501&appid=
+https://api.openweathermap.org/geo/1.0/direct?q=Aloguinsan&limit=1&appid=
+https://api.openweathermap.org/data/2.5/forecast?lat=10.2138&lon=123.5428&appid=
+https://api.openweathermap.org/data/2.5/onecall?lat=10.2138203&lon=123.5427501&appid=
+https://api.openweathermap.org/data/2.5/air_pollution?lat=10.2138203&lon=123.5427501&appid=
+https://api.openweathermap.org/data/2.5/onecall/timemachine?dt=1723766400&lat=10.2138&lon=123.5428&appid=
+
+http://openweathermap.org/img/wn/{iconCode.Replace("d", "n")}.png
+
+Temperature (temp, temp_min, temp_max, feels_like):
+
+Unit: Kelvin by default.
+Can be converted to Celsius or Fahrenheit.
+Convert to Celsius: °C = K - 273.15
+Convert to Fahrenheit: °F = K × 9/5 - 459.67
+Pressure (pressure, sea_level, grnd_level):
+
+Unit: Hectopascals (hPa) or millibars (mb). 1 hPa = 1 mb.
+Standard atmospheric pressure at sea level is approximately 1013 hPa.
+Humidity (humidity):
+
+Unit: Percentage (%).
+Represents the relative humidity, which is the percentage of moisture in the air relative to the maximum amount the air can hold at that temperature.
+Wind Speed (speed, gust):
+
+Unit: Meters per second (m/s) by default.
+Can be converted to kilometers per hour (km/h) or miles per hour (mph) if needed.
+Convert to km/h: speed (km/h) = speed (m/s) * 3.6
+Convert to mph: speed (mph) = speed (m/s) * 2.23694
+Wind Direction (deg):
+
+Unit: Degrees (°).
+Indicates the direction from which the wind is blowing, with 0° indicating north, 90° east, 180° south, and 270° west.
+Cloudiness (all):
+
+Unit: Percentage (%).
+Represents the cloud cover in the sky.
+Visibility (visibility):
+
+Unit: Meters (m).
+Represents the visibility distance. Maximum visibility is typically 10,000 meters.
+Time (dt, sunrise, sunset):
+
+Unit: Unix timestamp (seconds since January 1, 1970).
+To convert the Unix timestamp to a human-readable date and time:
+In C#:
+csharp
+Copy code
+long timestamp = /* Unix timestamp */;
+DateTime dateTime = DateTimeOffset.FromUnixTimeSeconds(timestamp).DateTime;
+Console.WriteLine($"Date and Time: {dateTime}");
+dt: Current time of the data calculation.
+sunrise: Sunrise time.
+sunset: Sunset time.
+
+long dtUnix = 1723947316;      // dt value
+long sunriseUnix = 1723930607; // sunrise value
+long sunsetUnix = 1723975374;  // sunset value
+
+// Convert Unix timestamp to DateTime in UTC
+DateTime dtUtc = DateTimeOffset.FromUnixTimeSeconds(dtUnix).UtcDateTime;
+DateTime sunriseUtc = DateTimeOffset.FromUnixTimeSeconds(sunriseUnix).UtcDateTime;
+DateTime sunsetUtc = DateTimeOffset.FromUnixTimeSeconds(sunsetUnix).UtcDateTime;
+
+// Convert to local time based on the system's timezone
+DateTime dtLocal = dtUtc.ToLocalTime();
+DateTime sunriseLocal = sunriseUtc.ToLocalTime();
+DateTime sunsetLocal = sunsetUtc.ToLocalTime();
+
+!-----------------------------OPEN WEATHER----------------------
+
+----------------------- WORLD TIDES -----------------------
+1f1a92e0-36d1-11ea-83df-0242ac130002-1f1a93f8-36d1-11ea-83df-0242ac130002
+https://www.worldtides.info/api/v3?extremes&date=2024-08-18&lat=10.2138203&lon=123.5427501&days=2&key=1f1a92e0-36d1-11ea-83df-0242ac130002-1f1a93f8-36d1-11ea-83df-0242ac130002
+https://api.stormglass.io/v2/tide/measurements?lat=10.2138203&lng=123.5427501&start={start_time}&end={end_time}
+
+
+
+
+
+const lat = 10.2138203;
+    const lon = 123.5427501;
+    const startTime = '2024-08-18T00:01:00Z';
+    const endTime = '2024-08-18T23:59:00Z';
+    const apiKey = '1f1a92e0-36d1-11ea-83df-0242ac130002-1f1a93f8-36d1-11ea-83df-0242ac130002';
+
+
+https://api.stormglass.io/v1/weather/point?start=${startTime}&end=${endTime}&lat=${lat}&lng=${lon}
+
+public class TideData
+{
+    public IEnumerable<TideMeasurement> SwellHeight { get; set; }
+    public IEnumerable<TideMeasurement> WaveHeight { get; set; }
+}
+
+public class TideMeasurement
+{
+    public string Source { get; set; }
+    public double Value { get; set; }
+}
+
+public class TideHeight
+{
+    public double Height { get; set; }
+    public string Type { get; set; } // "high" or "low"
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class TideConverter
+{
+    public static List<TideHeight> ConvertToTideType(TideData data)
+    {
+        // Combine swellHeight and waveHeight
+        var heights = data.SwellHeight.Select(h => h.Value)
+            .Concat(data.WaveHeight.Select(h => h.Value))
+            .ToList();
+
+        // Determine high and low tide
+        var minHeight = heights.Min();
+        var maxHeight = heights.Max();
+
+        return heights.Select(height => new TideHeight
+        {
+            Height = height,
+            Type = height == maxHeight ? "high" : "low"
+        }).ToList();
+    }
+}
+
+
+public async Task<TideData> GetTideDataAsync(double lat, double lon, DateTime startTime, DateTime endTime)
+    {
+        string url = $"https://api.stormglass.io/v2/tide/measurements?lat={lat}&lng={lon}&start={startTime:yyyy-MM-ddTHH:mm:ssZ}&end={endTime:yyyy-MM-ddTHH:mm:ssZ}";
+        _httpClient.DefaultRequestHeaders.Add("Authorization", _apiKey);
+
+        HttpResponseMessage response = await _httpClient.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+
+        string content = await response.Content.ReadAsStringAsync();
+        return JsonConvert.DeserializeObject<TideData>(content);
+    }
+
+!----------------------- WORLD TIDES -----------------------

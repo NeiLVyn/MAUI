@@ -47,6 +47,7 @@ public partial class ArcContentView : ContentView
         set => SetValue(SetTimeProperty, value);
     }
 
+    // BindableProperty for ArcIconType
     public static readonly BindableProperty ArcIconProperty = BindableProperty.Create(
         nameof(ArcIcon),
         typeof(ArcIcon),
@@ -58,6 +59,34 @@ public partial class ArcContentView : ContentView
     {
         get => (ArcIcon)GetValue(ArcIconProperty);
         set => SetValue(ArcIconProperty, value);
+    }
+
+    // BindableProperty for title text label
+    public static readonly BindableProperty TitleLabelProperty = BindableProperty.Create(
+        nameof(TitleLabel),
+        typeof(string),
+        typeof(ArcContentView),
+        default(string),
+        propertyChanged: OnTitleLabelChanged);
+
+    public string TitleLabel
+    {
+        get => (string)GetValue(TitleLabelProperty);
+        set => SetValue(TitleLabelProperty, value);
+    }
+
+    // BindableProperty for center image
+    public static readonly BindableProperty CenterImageProperty = BindableProperty.Create(
+        nameof(CenterImage),
+        typeof(ImageSource),
+        typeof(ArcContentView),
+        default(ImageSource),
+        propertyChanged: OnCenterImageChanged);
+
+    public ImageSource CenterImage
+    {
+        get => (ImageSource)GetValue(CenterImageProperty);
+        set => SetValue(CenterImageProperty, value);
     }
     #endregion
 
@@ -89,6 +118,18 @@ public partial class ArcContentView : ContentView
     {
         var control = (ArcContentView)bindable;
         control.ArcCanvasView.InvalidateSurface();
+    }
+
+    private static void OnCenterImageChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        var control = (ArcContentView)bindable;
+        control.img.Source = (ImageSource)newValue;
+    }
+
+    private static void OnTitleLabelChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        var control = (ArcContentView)bindable;
+        control.lblTitle.Text = (string)newValue;
     }
     #endregion
 
@@ -125,6 +166,9 @@ public partial class ArcContentView : ContentView
         };
 
         var totalDuration = SetTime - RiseTime;
+        var descLabel = ArcIcon == ArcIcon.Sun ? "Daylight" : "Moonlight";
+        lblDescription.Text = $"Total {descLabel}: {(int)totalDuration.TotalHours:D2} hours and {totalDuration.Minutes:D2} minutes";
+
         var elapsed = DateTime.Now - RiseTime;
         var progress = elapsed.TotalMinutes / totalDuration.TotalMinutes;
         progress = progress < 0 ? 0 : progress;

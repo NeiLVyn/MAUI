@@ -3,14 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:arcView="clr-namespace:NeilvynApp.Views.Custom.ArcView"
              x:Class="NeilvynApp.Views.TideAndWeather.TideAndWeatherView">
-    <StackLayout HorizontalOptions="FillAndExpand"
-                 VerticalOptions="FillAndExpand">
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <StackLayout HorizontalOptions="FillAndExpand"
+             VerticalOptions="FillAndExpand">
 
-        <Label Text="32 deg"
+            <StackLayout HeightRequest="300">
+                <Label Text="32 deg"
                FontSize="64"/>
+            </StackLayout>
 
-        <arcView:ArcContentView x:Name="sunArc"
-                                HeightRequest="150"
-                                BackgroundColor="Teal"/>
-    </StackLayout>
+            <arcView:ArcContentView x:Name="sunArc"
+                            HeightRequest="150" />
+        </StackLayout>
+    </ScrollView>
 </ContentView>

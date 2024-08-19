@@ -1,8 +1,10 @@
+using NeilvynApp.Views.TideAndWeather;
+
 namespace NeilvynApp.Views.Dashboard;
 
 public partial class Dashboard : ContentPage
 {
-	public Dashboard()
+    public Dashboard()
 	{
 		InitializeComponent();
 	}
@@ -22,6 +24,7 @@ public partial class Dashboard : ContentPage
     private void OnTapped_TabMenu_Weather(object sender, TappedEventArgs e)
     {
         TabSwitcher(1);
+        TideAndWeatherView.RefreshWeatherData.Invoke(this, EventArgs.Empty);
     }
 
     private void OnTapped_TabMenu_Map(object sender, TappedEventArgs e)

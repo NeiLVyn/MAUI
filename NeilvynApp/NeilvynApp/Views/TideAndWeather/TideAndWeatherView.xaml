@@ -2,18 +2,30 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:arcView="clr-namespace:NeilvynApp.Views.Custom.ArcView"
+             xmlns:vm="clr-namespace:NeilvynApp.ViewModels"
              x:Class="NeilvynApp.Views.TideAndWeather.TideAndWeatherView">
+    
+    <ContentView.BindingContext>
+        <vm:TideAndWeatherViewModel />
+    </ContentView.BindingContext>
+    
     <ScrollView VerticalScrollBarVisibility="Never">
         <StackLayout HorizontalOptions="FillAndExpand"
              VerticalOptions="FillAndExpand">
 
-            <StackLayout HeightRequest="300">
-                <Label Text="32 deg"
-               FontSize="64"/>
+            <StackLayout HeightRequest="300"
+                         Padding="25, 40, 25, 20">
+
+                <Label Text="{Binding OneCallData.Current.Temp}"
+                       FontSize="80"
+                       TextColor="#1d1d1d" />
+
+                <Label Text="{Binding CurrentAreaData.Name}"
+                       FontSize="18"
+                       TextColor="#1d1d1d" />
             </StackLayout>
 
-            <arcView:ArcContentView x:Name="sunArc"
-                            HeightRequest="150" />
+            
         </StackLayout>
     </ScrollView>
 </ContentView>

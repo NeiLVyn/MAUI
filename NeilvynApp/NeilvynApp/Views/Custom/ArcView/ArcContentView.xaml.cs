@@ -172,6 +172,7 @@ public partial class ArcContentView : ContentView
         var elapsed = DateTime.Now - RiseTime;
         var progress = elapsed.TotalMinutes / totalDuration.TotalMinutes;
         progress = progress < 0 ? 0 : progress;
+        progress = progress > 1 ? 1 : progress;
 
         var progressSweepAngle = (float)(180 * progress);
 

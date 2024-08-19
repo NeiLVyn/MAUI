@@ -3,6 +3,9 @@ using NeilvynApp.Core.Services;
 using NeilvynApp.Core;
 using Newtonsoft.Json;
 using NeilvynApp.Models.Dto;
+using Location = NeilvynApp.Core.Location.Location;
+using NeilvynApp.Views.TideAndWeather;
+using NeilvynApp.Models;
 
 namespace NeilvynApp.ViewModels
 {
@@ -17,6 +20,9 @@ namespace NeilvynApp.ViewModels
         private OneCallDto? _OneCallData = default(OneCallDto);
         public OneCallDto OneCallData { get => _OneCallData; set { _OneCallData = value; RaisePropertyChanged(nameof(OneCallData)); } }
 
+        private OneCallCurrentWeatherDto? _CurrentWeatherData = default(OneCallCurrentWeatherDto);
+        public OneCallCurrentWeatherDto CurrentWeatherData { get => _CurrentWeatherData; set { _CurrentWeatherData = value; RaisePropertyChanged(nameof(CurrentWeatherData)); } }
+
 
         public TideAndWeatherViewModel()
         {
@@ -26,8 +32,8 @@ namespace NeilvynApp.ViewModels
 
         public async void RefreshData()
         {
-            await GetCurrentLocationArea();
             await GetCurrentWeather();
+            await GetCurrentLocationArea();
         }
 
         private async Task GetCurrentWeather()
@@ -42,14 +48,33 @@ namespace NeilvynApp.ViewModels
                     {
                         var uri = $"https://api.openweathermap.org/data/2.5/onecall?appid={Constants.OpenWeatherMap_Key}&lat={position.Latitude}&lon={position.Longitude}";
 
-                        var resp = await _apiService.GetAsync(uri);
+                        string resp = await _apiService.GetAsync(uri);
 
-                        if (resp != null)
+                        if (!string.IsNullOrEmpty(resp))
                         {
-                            // resolve here, data is present but null deserialization
                             OneCallData = JsonConvert.DeserializeObject<OneCallDto>(resp);
-                            Console.WriteLine(OneCallData.Timezone);
-                            Console.WriteLine(OneCallData.Current.Uvi);
+
+                            if (OneCallData != null)
+                            {
+                                long sunsetUnix = OneCallData.Current.Sunset;
+                                
+                                DateTime sunsetUtc = DateTimeOffset.FromUnixTimeSeconds(sunsetUnix).UtcDateTime;
+                                DateTime sunsetLocalTime = sunsetUtc.ToLocalTime();
+                                DateTime currentTime = DateTime.Now;
+
+                                CurrentWeatherData = OneCallData.Current.Weather.FirstOrDefault();
+
+                                if (CurrentWeatherData != null)
+                                {
+                                    var icon = CurrentWeatherData.Icon.ResolveIconResource();
+
+                                    if (!string.IsNullOrEmpty(icon))
+                                    {
+                                        //var imgUri = Constants.OpenWeatherImageUrl + icon + ".png";
+                                        TideAndWeatherView.WeatherIcon?.Invoke(this, icon);
+                                    }
+                                }
+                            }
                         }
                     }
                 }

@@ -3,29 +3,62 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:arcView="clr-namespace:NeilvynApp.Views.Custom.ArcView"
              xmlns:vm="clr-namespace:NeilvynApp.ViewModels"
+             xmlns:converters="clr-namespace:NeilvynApp.Core.Converters"
              x:Class="NeilvynApp.Views.TideAndWeather.TideAndWeatherView">
     
     <ContentView.BindingContext>
         <vm:TideAndWeatherViewModel />
     </ContentView.BindingContext>
-    
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:CamelCaseConverter x:Key="CamelCaseConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
     <ScrollView VerticalScrollBarVisibility="Never">
         <StackLayout HorizontalOptions="FillAndExpand"
-             VerticalOptions="FillAndExpand">
+                     VerticalOptions="FillAndExpand">
 
-            <StackLayout HeightRequest="300"
+            <StackLayout Orientation="Horizontal"
                          Padding="25, 40, 25, 20">
-
-                <Label Text="{Binding OneCallData.Current.Temp}"
+                <StackLayout HeightRequest="150"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="StartAndExpand">
+                    <Label Text="{Binding OneCallData.Current.Temp}"
                        FontSize="80"
                        TextColor="#1d1d1d" />
 
-                <Label Text="{Binding CurrentAreaData.Name}"
-                       FontSize="18"
-                       TextColor="#1d1d1d" />
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="5">
+                        <Image Source="pin"
+                               WidthRequest="15"/>
+                        <Label Text="{Binding CurrentAreaData.Name}"
+                               FontSize="18"
+                               TextColor="#1d1d1d" />
+                    </StackLayout>
+
+                    <Label Text="{Binding CurrentWeatherData.Description, Converter={StaticResource CamelCaseConverter}}"
+                           FontSize="15"
+                           TextColor="#1d1d1d" />
+                    
+                </StackLayout>
+                <StackLayout HeightRequest="150"
+                             WidthRequest="130"
+                             VerticalOptions="Start"
+                             Padding="0, 25, 0, 0">
+                    <Image x:Name="imgWeatherIcon"
+                           HorizontalOptions="Center"
+                           WidthRequest="100"/>
+                </StackLayout>
             </StackLayout>
 
-            
+            <arcView:ArcContentView ArcIcon="Sun"
+                                    TitleLabel="{Binding OneCallData.Current.uvi}"
+                                    RiseTime="Aug 19, 2024 18:36"
+                                    SetTime="Aug 19, 2024 22:00"
+                                    StartLabelText="18:36"
+                                    EndLabelText="23:59"/>
         </StackLayout>
     </ScrollView>
 </ContentView>

@@ -10,13 +10,13 @@ namespace NeilvynApp.Models.Dto
 {
     public class OneCallCurrentDto
     {
-        [JsonPropertyName("uvi")]
-        public string Uvi { get; set; }
+        [JsonPropertyName("sunset")]
+        public long Sunset { get; set; }
 
         private string _temperature;
         [JsonPropertyName("temp")]
         public string Temp
-        { 
+        {
             get
             {
                 if (string.IsNullOrEmpty(_temperature))
@@ -27,7 +27,7 @@ namespace NeilvynApp.Models.Dto
                 if (double.TryParse(_temperature, out double kelvin))
                 {
                     double celsius = kelvin - 273.15;
-                    return $"{celsius.ToString("F2")}°C";
+                    return $"{celsius.ToString("F1")}°";
                 }
 
                 return "";
@@ -38,8 +38,10 @@ namespace NeilvynApp.Models.Dto
             }
         }
 
+        [JsonPropertyName("uvi")]
+        public string uvi { get; set; }
 
         [JsonPropertyName("weather")]
-        public OneCallCurrentWeatherDto Weather { get; set; }
+        public List<OneCallCurrentWeatherDto> Weather { get; set; }
     }
 }

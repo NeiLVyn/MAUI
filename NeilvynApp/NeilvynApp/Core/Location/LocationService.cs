@@ -19,8 +19,6 @@ namespace NeilvynApp.Core.Location
                     double latitude = location.Latitude;
                     double longitude = location.Longitude;
 
-                    Console.WriteLine($"------------------------------------------------------------");
-                    Console.WriteLine($"Latitude: {latitude}, Longitude: {longitude}");
                     Console.WriteLine($"DeviceInfo: {DeviceInfo.Model}");
 
                     return new Location { 

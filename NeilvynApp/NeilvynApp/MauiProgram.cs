@@ -1,7 +1,5 @@
-﻿using CommunityToolkit.Maui.Maps;
-using Microsoft.Extensions.Logging;
-using CommunityToolkit.Maui;
-using NeilvynApp.Core;
+﻿using Microsoft.Extensions.Logging;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace NeilvynApp
 {
@@ -22,7 +20,7 @@ namespace NeilvynApp
     		builder.Logging.AddDebug();
 #endif
 
-            builder.UseMauiCommunityToolkitMaps(Constants.GoogleMap_Key);
+            builder.UseSkiaSharp();
 
             return builder.Build();
         }

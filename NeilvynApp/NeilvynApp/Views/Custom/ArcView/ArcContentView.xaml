@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
+             x:Class="NeilvynApp.Views.Custom.ArcView.ArcContentView">
+    <Grid HorizontalOptions="FillAndExpand"
+          VerticalOptions="FillAndExpand">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <skia:SKCanvasView x:Name="ArcCanvasView" PaintSurface="OnPaintSurface">
+        </skia:SKCanvasView>
+
+        <Label x:Name="lblStart"
+               HorizontalOptions="Start"
+               VerticalOptions="Center"
+               Margin="10,40,0,10"
+               TextColor="#1d1d1d">
+        </Label>
+
+        <Label x:Name="lblEnd"
+               HorizontalOptions="End"
+               VerticalOptions="Center"
+               Margin="0,40,10,10"
+               TextColor="#1d1d1d">
+        </Label>
+        
+        
+    </Grid>
+</ContentView>

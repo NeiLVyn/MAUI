@@ -205,7 +205,7 @@ public partial class ArcContentView : ContentView
         }
         else if (percentage <= 27)
         {
-            return 130;
+            return 128;
         }
         else if (percentage <= 30)
         {
@@ -268,7 +268,7 @@ public partial class ArcContentView : ContentView
         }
         else if (percentage <= 72)
         {
-            return 130;
+            return 128;
         }
         else if (percentage <= 75)
         {

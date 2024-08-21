@@ -58,7 +58,7 @@ namespace NeilvynApp.ViewModels
 
                     if (position != null)
                     {
-                        var uri = $"https://api.openweathermap.org/data/2.5/onecall?appid={Constants.OpenWeatherMap_Key}&lat={position.Latitude}&lon={position.Longitude}";
+                        var uri = $"https://api.openweathermap.org/data/2.5/onecall?units=metric&appid={Constants.OpenWeatherMap_Key}&lat={position.Latitude}&lon={position.Longitude}";
 
                         string resp = await _apiService.GetAsync(uri);
 

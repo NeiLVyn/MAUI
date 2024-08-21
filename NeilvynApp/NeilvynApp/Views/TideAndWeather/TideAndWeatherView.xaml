@@ -30,6 +30,7 @@
                          HorizontalOptions="FillAndExpand"
                          VerticalOptions="FillAndExpand">
 
+                <!-- temp and location -->
                 <StackLayout Orientation="Horizontal"
                              Padding="25, 40, 25, 20">
                     <StackLayout HeightRequest="150"
@@ -64,18 +65,145 @@
                     </StackLayout>
                 </StackLayout>
 
+                <!-- sunrise and sunset -->
                 <arcView:ArcContentView ArcIcon="Sun"
                                         TitleLabel="{Binding OneCallData.Current.uvi}"
                                         RiseTime="{Binding OneCallData.Current.Sunrise}"
                                         SetTime="{Binding OneCallData.Current.Sunset}"/>
+
+                <!-- wind and humidity -->
+                <StackLayout HorizontalOptions="FillAndExpand"
+                             Padding="5, 30, 5, 5"
+                             Orientation="Horizontal"
+                             Spacing="10" >
+
+                    <StackLayout Spacing="10"
+                                 HeightRequest="70"
+                                 HorizontalOptions="CenterAndExpand"
+                                 Orientation="Horizontal">
+
+                        <Frame CornerRadius="5"
+                               Grid.Column="0"
+                               BorderColor="#1d1d1d"
+                               Grid.Row="0"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               Padding="0"
+                               Margin="0"
+                               BackgroundColor="#1d1d1d80">
+                            
+                            <StackLayout Spacing="10"
+                                         HorizontalOptions="CenterAndExpand"
+                                         VerticalOptions="CenterAndExpand"
+                                         WidthRequest="165"
+                                         HeightRequest="60"
+                                         Padding="10"
+                                         Orientation="Horizontal">
+
+                                <StackLayout WidthRequest="40"
+                                             HorizontalOptions="Start"
+                                             VerticalOptions="FillAndExpand" >
+                                    <Image Source="wind"
+                                           WidthRequest="30"
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand" />
+                                </StackLayout>
+
+                                <StackLayout HorizontalOptions="FillAndExpand"
+                                             VerticalOptions="FillAndExpand"
+                                             Spacing="0">
+
+                                    <Label Text="Wind"
+                                           TextColor="#1d1d1d"
+                                           FontSize="11"
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="Start"/>
+
+                                    <StackLayout HorizontalOptions="FillAndExpand"
+                                                 VerticalOptions="FillAndExpand">
+                                        <Label Text="{Binding OneCallData.Current.Wind_Speed}"
+                                               TextColor="#1d1d1d"
+                                               FontSize="11"
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="CenterAndExpand"/>
+
+                                        <Label Text="{Binding OneCallData.Current.Wind_Deg}"
+                                               TextColor="#1d1d1d"
+                                               FontSize="11"
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="CenterAndExpand"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                        
+                        <Frame CornerRadius="5"
+                               Grid.Column="0"
+                               BorderColor="#1d1d1d"
+                               Grid.Row="0"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               Padding="0"
+                               Margin="0"
+                               BackgroundColor="#1d1d1d80">
+
+                            <StackLayout Spacing="10"
+                                         HorizontalOptions="CenterAndExpand"
+                                         VerticalOptions="CenterAndExpand"
+                                         WidthRequest="165"
+                                         HeightRequest="60"
+                                         Padding="10"
+                                         Orientation="Horizontal">
+
+                                <StackLayout WidthRequest="40"
+                                             HorizontalOptions="Start"
+                                             VerticalOptions="FillAndExpand" >
+                                    <Image Source="humidity"
+                                           WidthRequest="30"
+                                           HorizontalOptions="CenterAndExpand"
+                                           VerticalOptions="CenterAndExpand" />
+                                </StackLayout>
+
+                                <StackLayout HorizontalOptions="FillAndExpand"
+                                             VerticalOptions="FillAndExpand"
+                                             Spacing="0">
+
+                                    <Label Text="Humidity"
+                                           TextColor="#1d1d1d"
+                                           FontSize="11"
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="Start"/>
+
+                                    <StackLayout HorizontalOptions="FillAndExpand"
+                                                 VerticalOptions="FillAndExpand">
+                                        <Label Text="{Binding OneCallData.Current.Humidity}"
+                                               TextColor="#1d1d1d"
+                                               FontSize="16"
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="CenterAndExpand"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+                <!-- todo: daily forcast -->
+                
             </StackLayout>
+
+            <!-- loading view -->
             <ContentView IsVisible="{Binding IsLoading}" 
                          Grid.Row="0"
                          Grid.Column="0"
                          HorizontalOptions="FillAndExpand"
                          VerticalOptions="FillAndExpand"
                          BackgroundColor="#d1d1d1">
-                <Label Text="Fetching Data"
+                <Label Text="Fetching Weather"
                        FontSize="15"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"

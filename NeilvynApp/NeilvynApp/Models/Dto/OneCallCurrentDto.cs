@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using NeilvynApp.Core.EnumExtensions;
+using NeilvynApp.Core.Helpers;
 using NeilvynApp.Enums;
 using System;
 using System.Collections.Generic;
@@ -24,14 +25,9 @@ namespace NeilvynApp.Models.Dto
         {
             get
             {
-                if (string.IsNullOrEmpty(_temperature))
+                if (double.TryParse(_temperature, out double celsius))
                 {
-                    return "";
-                }
-
-                if (double.TryParse(_temperature, out double kelvin))
-                {
-                    double celsius = kelvin - 273.15;
+                    //double celsius = kelvin - 273.15;
                     return $"{celsius.ToString("F1")}°";
                 }
 
@@ -40,6 +36,47 @@ namespace NeilvynApp.Models.Dto
             set
             {
                 _temperature = value;
+            }
+        }
+
+        private string _wind_speed;
+        [JsonPropertyName("wind_speed")]
+        public string Wind_Speed
+        {
+            get
+            {
+                if (double.TryParse(_wind_speed, out double wind_mph))
+                {
+                    double wind_kph = wind_mph * 3.6;
+                    return $"Speed: {wind_kph.ToString("F2")} km/h";
+                }
+
+                return "";
+            }
+            set
+            {
+                _wind_speed = value;
+            }
+        }
+
+        private string _wind_deg;
+        [JsonPropertyName("wind_deg")]
+        public string Wind_Deg
+        {
+            get
+            {
+                if (double.TryParse(_wind_deg, out double wind_angle))
+                {
+                    int angle = Convert.ToInt32(wind_angle);
+                    Directions direction = wind_angle.ToDirection();
+                    return $"Direction: {angle}° {direction}";
+                }
+
+                return "";
+            }
+            set
+            {
+                _wind_deg = value;
             }
         }
 
@@ -72,6 +109,25 @@ namespace NeilvynApp.Models.Dto
             set
             {
                 _uvi = value;
+            }
+        }
+
+        private string _humidity;
+        [JsonPropertyName("humidity")]
+        public string Humidity
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_humidity))
+                {
+                    return $"{_humidity}%";
+                }
+
+                return "";
+            }
+            set
+            {
+                _humidity = value;
             }
         }
 

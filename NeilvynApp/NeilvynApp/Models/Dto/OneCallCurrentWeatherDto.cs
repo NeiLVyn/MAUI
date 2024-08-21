@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using NeilvynApp.Core.Helpers;
+using System.Text.Json.Serialization;
 
 namespace NeilvynApp.Models
 {
@@ -13,7 +14,23 @@ namespace NeilvynApp.Models
         [JsonPropertyName("description")]
         public string Description { get; set; }
 
+        private string _icon;
         [JsonPropertyName("icon")]
-        public string Icon { get; set; }
+        public string Icon 
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_icon))
+                {
+                    return _icon.ResolveIconResource();
+                }
+
+                return "";
+            }
+            set
+            {
+                _icon = value;
+            }
+        }
     }
 }

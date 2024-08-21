@@ -69,17 +69,6 @@ namespace NeilvynApp.ViewModels
                             if (OneCallData != null)
                             {
                                 CurrentWeatherData = OneCallData.Current.Weather.FirstOrDefault();
-
-                                if (CurrentWeatherData != null)
-                                {
-                                    var icon = CurrentWeatherData.Icon.ResolveIconResource();
-
-                                    if (!string.IsNullOrEmpty(icon))
-                                    {
-                                        //var imgUri = Constants.OpenWeatherImageUrl + icon + ".png";
-                                        TideAndWeatherView.WeatherIcon?.Invoke(this, icon);
-                                    }
-                                }
                             }
                         }
                     }

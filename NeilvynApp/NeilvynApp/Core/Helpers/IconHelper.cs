@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeilvynApp.Core
+namespace NeilvynApp.Core.Helpers
 {
-    public static class IconHelpers
+    public static class IconHelper
     {
         public static string ResolveIconResource(this string source)
         {
             if (source == "01d")
             {
                 return "zero_one_d.png";
-            } 
+            }
             else if (source == "01n")
             {
                 return "zero_one_n.png";

@@ -6,6 +6,7 @@ using NeilvynApp.Models.Dto;
 using Location = NeilvynApp.Core.Location.Location;
 using NeilvynApp.Views.TideAndWeather;
 using NeilvynApp.Models;
+using NeilvynApp.Core.Helpers;
 
 namespace NeilvynApp.ViewModels
 {
@@ -23,6 +24,10 @@ namespace NeilvynApp.ViewModels
         private OneCallCurrentWeatherDto? _CurrentWeatherData = default(OneCallCurrentWeatherDto);
         public OneCallCurrentWeatherDto CurrentWeatherData { get => _CurrentWeatherData; set { _CurrentWeatherData = value; RaisePropertyChanged(nameof(CurrentWeatherData)); } }
 
+        private bool IsFirstLoad = true;
+        private bool _IsLoading = true;
+        public bool IsLoading { get => _IsLoading; set { _IsLoading = value; RaisePropertyChanged(nameof(IsLoading)); } }
+
 
         public TideAndWeatherViewModel()
         {
@@ -32,8 +37,15 @@ namespace NeilvynApp.ViewModels
 
         public async void RefreshData()
         {
+            if(IsFirstLoad)
+            {
+                IsFirstLoad = false;
+                IsLoading = true;
+            }
+
             await GetCurrentWeather();
             await GetCurrentLocationArea();
+            IsLoading = false;
         }
 
         private async Task GetCurrentWeather()
@@ -56,12 +68,6 @@ namespace NeilvynApp.ViewModels
 
                             if (OneCallData != null)
                             {
-                                long sunsetUnix = OneCallData.Current.Sunset;
-                                
-                                DateTime sunsetUtc = DateTimeOffset.FromUnixTimeSeconds(sunsetUnix).UtcDateTime;
-                                DateTime sunsetLocalTime = sunsetUtc.ToLocalTime();
-                                DateTime currentTime = DateTime.Now;
-
                                 CurrentWeatherData = OneCallData.Current.Weather.FirstOrDefault();
 
                                 if (CurrentWeatherData != null)

@@ -1,3 +1,4 @@
+using NeilvynApp.Core.Helpers;
 using NeilvynApp.Enums;
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
@@ -8,42 +9,22 @@ public partial class ArcContentView : ContentView
 {
     #region bindables
     // BindableProperty for StartLabel
-    public static readonly BindableProperty StartLabelTextProperty =
-        BindableProperty.Create(nameof(StartLabelText), typeof(string), typeof(ArcContentView), string.Empty, propertyChanged: OnStartLabelTextChanged);
-
-    public string StartLabelText
-    {
-        get => (string)GetValue(StartLabelTextProperty);
-        set => SetValue(StartLabelTextProperty, value);
-    }
-
-    // BindableProperty for EndLabel
-    public static readonly BindableProperty EndLabelTextProperty =
-        BindableProperty.Create(nameof(EndLabelText), typeof(string), typeof(ArcContentView), string.Empty, propertyChanged: OnEndLabelTextChanged);
-
-    public string EndLabelText
-    {
-        get => (string)GetValue(EndLabelTextProperty);
-        set => SetValue(EndLabelTextProperty, value);
-    }
-
-    // BindableProperty for RiseTime
     public static readonly BindableProperty RiseTimeProperty =
-        BindableProperty.Create(nameof(RiseTime), typeof(DateTime), typeof(ArcContentView), default(DateTime), propertyChanged: OnRiseOrSetTimeChanged);
+        BindableProperty.Create(nameof(RiseTime), typeof(string), typeof(ArcContentView), string.Empty, propertyChanged: OnRiseTimeChanged);
 
-    public DateTime RiseTime
+    public string RiseTime
     {
-        get => (DateTime)GetValue(RiseTimeProperty);
+        get => (string)GetValue(RiseTimeProperty);
         set => SetValue(RiseTimeProperty, value);
     }
 
-    // BindableProperty for SetTime
+    // BindableProperty for EndLabel
     public static readonly BindableProperty SetTimeProperty =
-        BindableProperty.Create(nameof(SetTime), typeof(DateTime), typeof(ArcContentView), default(DateTime), propertyChanged: OnRiseOrSetTimeChanged);
+        BindableProperty.Create(nameof(SetTime), typeof(string), typeof(ArcContentView), string.Empty, propertyChanged: OnSetTimeChanged);
 
-    public DateTime SetTime
+    public string SetTime
     {
-        get => (DateTime)GetValue(SetTimeProperty);
+        get => (string)GetValue(SetTimeProperty);
         set => SetValue(SetTimeProperty, value);
     }
 
@@ -91,29 +72,26 @@ public partial class ArcContentView : ContentView
     #endregion
 
     #region onchanged
-    private static void OnStartLabelTextChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnRiseTimeChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is ArcContentView arcView && newValue is string newText)
         {
-            arcView.lblStart.Text = newText;
+            arcView.lblStart.Text = newText.ToLocalDateTime().ToString("hh:mm tt");
+            var control = (ArcContentView)bindable;
+            control.ArcCanvasView.InvalidateSurface();
         }
     }
 
-    private static void OnEndLabelTextChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnSetTimeChanged(BindableObject bindable, object oldValue, object newValue)
     {
         if (bindable is ArcContentView arcView && newValue is string newText)
         {
-            arcView.lblEnd.Text = newText;
+            arcView.lblEnd.Text = newText.ToLocalDateTime().ToString("hh:mm tt");
+            var control = (ArcContentView)bindable;
+            control.ArcCanvasView.InvalidateSurface();
         }
     }
 
-    private static void OnRiseOrSetTimeChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-        if (bindable is ArcContentView arcView)
-        {
-            arcView.ArcCanvasView.InvalidateSurface();
-        }
-    }
     private static void OnArcIconChanged(BindableObject bindable, object oldValue, object newValue)
     {
         var control = (ArcContentView)bindable;
@@ -165,11 +143,17 @@ public partial class ArcContentView : ContentView
             StrokeWidth = 6
         };
 
-        var totalDuration = SetTime - RiseTime;
+        DateTime rise = RiseTime.ToLocalDateTime();
+        DateTime set = SetTime.ToLocalDateTime();
+
+        lblStart.Text = rise.ToString("hh:mm tt");
+        lblEnd.Text = set.ToString("hh:mm tt");
+
+        var totalDuration = set - rise;
         var descLabel = ArcIcon == ArcIcon.Sun ? "Daylight" : "Moonlight";
         lblDescription.Text = $"Total {descLabel}: {(int)totalDuration.TotalHours:D2} hours and {totalDuration.Minutes:D2} minutes";
 
-        var elapsed = DateTime.Now - RiseTime;
+        var elapsed = DateTime.Now - rise;
         var progress = elapsed.TotalMinutes / totalDuration.TotalMinutes;
         progress = progress < 0 ? 0 : progress;
         progress = progress > 1 ? 1 : progress;

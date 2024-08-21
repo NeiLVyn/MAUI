@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using NeilvynApp.Core;
+using NeilvynApp.Core.Helpers;
 using NeilvynApp.Core.Location;
 using NeilvynApp.Core.Services;
 using NeilvynApp.ViewModels;

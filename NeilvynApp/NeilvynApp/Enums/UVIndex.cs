@@ -4,19 +4,19 @@ namespace NeilvynApp.Enums
 {
     public enum UVIndex
     {
-        [Description("Low Exposure")]
-        Low,
+        [Description("Low")]
+        Low,                                    // value < 3
 
-        [Description("Moderate Exposure")]
-        Moderate,
+        [Description("Moderate")]
+        Moderate,                               // value < 3 && value < 6
 
-        [Description("High Exposure")]
-        High,
+        [Description("High")]
+        High,                                   // value >= 6 && value < 8
 
-        [Description("Very High Exposure")]
-        VeryHigh,
-        
-        [Description("Extreme Exposure")]
-        Extreme
+        [Description("Very High")]
+        VeryHigh,                               // value >= 8 && value < 11
+
+        [Description("Extreme")]
+        Extreme                                 // value >= 11
     }
 }

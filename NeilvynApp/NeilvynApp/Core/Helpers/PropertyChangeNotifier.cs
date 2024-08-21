@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace NeilvynApp.Core
+namespace NeilvynApp.Core.Helpers
 {
     public class PropertyChangeNotifier : INotifyPropertyChanged
     {

@@ -1,4 +1,4 @@
-﻿namespace NeilvynApp.Core
+﻿namespace NeilvynApp.Core.Helpers
 {
     public static class ServiceHelper
     {

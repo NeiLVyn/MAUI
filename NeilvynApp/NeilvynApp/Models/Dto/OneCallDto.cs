@@ -25,12 +25,29 @@ namespace NeilvynApp.Models.Dto
 
                     if (forcastToday != null)
                     {
-                        return new OneCallCurrentAstronomyDto
+                        if(forcastToday.Moonrise.ToLocalDateTime() < forcastToday.Moonset.ToLocalDateTime())
                         {
-                            Moonrise = forcastToday.Moonrise,
-                            Moonset = forcastToday.Moonset,
-                            Moon_Phase = forcastToday.Moon_Phase
-                        };
+                            return new OneCallCurrentAstronomyDto
+                            {
+                                Moonrise = forcastToday.Moonrise,
+                                Moonset = forcastToday.Moonset,
+                                Moon_Phase = forcastToday.Moon_Phase
+                            };
+                        }
+                        else // moonset is next day
+                        {
+                            var nextDay = Daily.FirstOrDefault(x => x.DateItem.Date == DateTime.Now.Date.AddDays(1));
+                            
+                            if (nextDay != null)
+                            {
+                                return new OneCallCurrentAstronomyDto
+                                {
+                                    Moonrise = forcastToday.Moonrise,
+                                    Moonset = nextDay.Moonset,
+                                    Moon_Phase = forcastToday.Moon_Phase
+                                };
+                            }
+                        }
                     }
                 }
 

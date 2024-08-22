@@ -146,8 +146,16 @@ public partial class ArcContentView : ContentView
         DateTime rise = RiseTime.ToLocalDateTime();
         DateTime set = SetTime.ToLocalDateTime();
 
-        lblStart.Text = rise.ToString("hh:mm tt");
-        lblEnd.Text = set.ToString("hh:mm tt");
+        if(ArcIcon == ArcIcon.Sun)
+        {
+            lblStart.Text = rise.ToString("hh:mm tt");
+            lblEnd.Text = set.ToString("hh:mm tt");
+        }
+        else
+        {
+            lblStart.Text = rise.ToString("ddd - hh:mm tt");
+            lblEnd.Text = set.ToString("ddd - hh:mm tt");
+        }
 
         var totalDuration = set - rise;
         var descLabel = ArcIcon == ArcIcon.Sun ? "Daylight" : "Moonlight";
